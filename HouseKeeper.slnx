@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/HouseKeeper.Api/HouseKeeper.Api.csproj" />
+  <Project Path="src/HouseKeeper.Application/HouseKeeper.Application.csproj" />
+  <Project Path="src/HouseKeeper.Domain/HouseKeeper.Domain.csproj" />
+  <Project Path="src/HouseKeeper.Infrastructure/HouseKeeper.Infrastructure.csproj" />
+</Solution>
