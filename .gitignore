@@ -1,0 +1,137 @@
+# =============================================================================
+# HouseKeeper backend - .gitignore
+# Stack: .NET 10 / ASP.NET Core / EF Core / PostgreSQL / Docker / xUnit
+# Dev environment: macOS + JetBrains Rider
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# .NET build output
+# -----------------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]64/
+artifacts/
+publish/
+
+# MSBuild binary logs (can contain environment variables, keep them local)
+*.binlog
+
+# -----------------------------------------------------------------------------
+# NuGet
+# -----------------------------------------------------------------------------
+*.nupkg
+*.snupkg
+# Legacy packages folder (packages.config era), never needed with PackageReference
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+# Note: packages.lock.json is NOT ignored on purpose. If you enable
+# RestorePackagesWithLockFile, it must be committed for reproducible restores.
+
+# -----------------------------------------------------------------------------
+# Tests and code coverage (xUnit, coverlet, ReportGenerator)
+# -----------------------------------------------------------------------------
+[Tt]est[Rr]esult*/
+*.trx
+coverage/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+coveragereport/
+
+# -----------------------------------------------------------------------------
+# Secrets and local configuration
+# Real secrets go in dotnet user-secrets (stored outside the repo, in
+# ~/.microsoft/usersecrets) or in environment variables. These patterns are
+# a safety net in case something local ends up in the working tree.
+# -----------------------------------------------------------------------------
+appsettings.*.local.json
+appsettings.local.json
+*.local.json
+
+# Environment files (Docker Compose, scripts). Keep a documented template.
+.env
+.env.*
+!.env.example
+
+# Certificates and private keys (HTTPS dev certs, signing keys)
+*.pfx
+*.p12
+*.pem
+*.key
+*.crt
+
+# -----------------------------------------------------------------------------
+# JetBrains Rider
+# Shared team settings live in <Solution>.sln.DotSettings (committed) and in
+# .editorconfig. Everything under .idea/ is machine or user specific.
+# -----------------------------------------------------------------------------
+.idea/
+*.sln.iml
+*.DotSettings.user
+*.user
+*.userprefs
+.idea_modules/
+# Rider HTTP client private environment (holds tokens/passwords)
+http-client.private.env.json
+
+# -----------------------------------------------------------------------------
+# Other editors
+# -----------------------------------------------------------------------------
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+*.suo
+*.swp
+*~
+
+# -----------------------------------------------------------------------------
+# macOS
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.DocumentRevisions-V100
+Icon?
+
+# -----------------------------------------------------------------------------
+# Docker and local data
+# -----------------------------------------------------------------------------
+# Local PostgreSQL data if you bind-mount a folder instead of a named volume
+.data/
+postgres-data/
+# Personal compose overrides (the shared docker-compose.override.yml, if any,
+# stays committed)
+docker-compose.override.local.yml
+
+# Local database dumps
+*.dump
+*.sql.gz
+*.backup
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
+*.log
+*.tmp
+*.bak
+*.orig
