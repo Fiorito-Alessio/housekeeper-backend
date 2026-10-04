@@ -37,12 +37,36 @@ HouseKeeper is split into two repositories:
 
 ### Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- [Docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/) with Docker Compose v2: the app only runs in containers, even in development.
+- [.NET 10 SDK](https://dotnet.microsoft.com/download): only needed to build and test outside Docker (IDE, `dotnet test`). The exact version is pinned in [`global.json`](global.json).
 
 ### Running the project
 
-_This section will be completed once the .NET solution is created._
+1. Create your local environment file from the template, then change the password:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   `.env` is ignored by Git: never commit it.
+
+2. Build the images and start the stack:
+
+   ```bash
+   docker compose up --build
+   ```
+
+   The database starts first; the API waits until it is healthy.
+
+3. The API listens on <http://localhost:8080> (bound to `127.0.0.1` only, so it is not reachable from the rest of your network).
+
+To stop the stack, press `Ctrl+C` or run `docker compose down`. Database data is kept in a Docker volume between runs; to start from an empty database, run `docker compose down -v` (this deletes all local data).
+
+### Running the tests
+
+```bash
+dotnet test
+```
 
 ## Contributing
 
