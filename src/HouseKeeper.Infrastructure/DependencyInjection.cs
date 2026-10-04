@@ -1,4 +1,5 @@
 using HouseKeeper.Infrastructure.Persistence;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,7 @@ public static class DependencyInjection
                                ?? throw new InvalidOperationException("Connection string 'Default' is missing.");
 
         services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
-        
+
         // Register the other infrastructure services here (e.g. repository implementations).
 
         return services;
